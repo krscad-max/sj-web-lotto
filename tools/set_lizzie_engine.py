@@ -7,10 +7,12 @@ CFG = "/Applications/Lizzie/config.txt"
 ENGINES = {
     "katago": "/opt/homebrew/bin/katago gtp -config /opt/homebrew/Cellar/katago/1.16.4/share/katago/configs/gtp_example.cfg -model /opt/homebrew/Cellar/katago/1.16.4/share/katago/g170-b40c256x2-s5095420928-d1229425124.bin.gz",
     "gnugo": "/opt/homebrew/bin/gnugo --mode gtp --level 10",
+    "leelaz": "/opt/homebrew/bin/leelaz -g -w /Applications/Lizzie/lznetwork.gz",
+    "pachi": "/opt/homebrew/bin/pachi",
 }
 
 if len(sys.argv) != 2 or sys.argv[1] not in ENGINES:
-    print("Usage: set_lizzie_engine.py [katago|gnugo]")
+    print("Usage: set_lizzie_engine.py [katago|gnugo|leelaz|pachi]")
     sys.exit(1)
 
 engine = sys.argv[1]
