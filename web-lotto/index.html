@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>로또 도우미 — 과거 당첨 + 추천 생성기</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <h1>로또 도우미</h1>
+    <p class="lead">과거 당첨번호 보관 및 다양한 규칙으로 추천번호를 생성합니다. (오락용)</p>
+
+    <section id="controls" class="card">
+      <div class="row">
+        <label>게임 선택
+          <select id="gameSelect">
+            <option value="649">Lotto 6/49</option>
+            <option value="max">Lotto Max</option>
+          </select>
+        </label>
+        <label>전략
+          <select id="strategy">
+            <option value="random">랜덤(기본)</option>
+            <option value="freq">빈도 기반 (최근빈도 우대)</option>
+            <option value="cold">미출현 우대 (최근 미출현)</option>
+            <option value="balanced">짝수/홀수 균형</option>
+          </select>
+        </label>
+        <button id="genBtn">추천 생성</button>
+      </div>
+      <div class="row small">
+        <label>세트 수: <input id="count" type="number" min="1" max="20" value="5"></label>
+        <label>보너스 포함: <input id="bonus" type="checkbox"></label>
+      </div>
+    </section>
+
+    <section id="results" class="card">
+      <h2>추천 결과</h2>
+      <div id="output"></div>
+      <button id="exportCsv">CSV로 내보내기</button>
+    </section>
+
+    <section class="card"><h2>분석 샘플</h2><ul><li><a href="/web-lotto/analysis/analysis1.html">지난 12개월 숫자 빈도 분석</a> — 데이터 기반 통계와 활용 팁</li><li><a href="/web-lotto/analysis/analysis2.html">미출현 우대 전략 테스트</a> — 전략 설명과 주의사항</li></ul></section>
+
+    <section id="history" class="card">
+      <h2>과거 당첨번호 (내장 데이터)</h2>
+      <div id="historyTable"></div>
+    </section>
+
+    <footer>
+      <p>Disclaimer: 이 서비스는 오락용입니다. 당첨을 보장하지 않습니다.</p>
+    </footer>
+  <p><a href="about.html">About</a> | <a href="privacy.html">Privacy</a></p>
+</main>
+  <script src="app.js"></script>
+</body>
+</html>

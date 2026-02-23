@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>로또 분석: 지난 12개월 숫자 빈도</title>
+  <link rel="stylesheet" href="/web-lotto/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <main class="container">
+    <h1>로또 분석: 지난 12개월 숫자 빈도</h1>
+    <div class="card">
+      <p>이 글에서는 최근 데이터의 Lotto 6/49 당첨 번호 빈도를 분석합니다. 아래 차트는 web-lotto/data/lotto_649.csv를 기준으로 생성됩니다.</p>
+      <h2>핵심 요약</h2>
+      <ul id="summary">
+        <li>로딩 중...</li>
+      </ul>
+      <h2>빈도 히스토그램</h2>
+      <canvas id="freqChart" width="800" height="300"></canvas>
+      <h2>해석 및 활용 팁</h2>
+      <p>빈도는 단순 통계입니다. 과거의 빈도는 미래를 보장하지 않으므로, 추천 전략으로는 빈도 기반 가중치와 무작위 요소를 혼합하는 것을 권장합니다. 예: 50%는 자주 출현한 숫자에서, 50%는 랜덤/미출현 숫자에서 선택.</p>
+      <p>CSV 원본 및 더 많은 데이터는 메인 페이지의 '과거 데이터' 섹션을 참조하세요.</p>
+    </div>
+    <p><a href="/web-lotto/index.html">Back</a></p>
+  </main>
+<script>
+async function loadAndRender(){
+  try{
+    const res = await fetch('/web-lotto/data/lotto_649.csv');
+    const txt = await res.text();
+    const rows = txt.trim().split('\n').map(r=>r.trim()).filter(Boolean);
+    const counts = {};
+    for(let i=1;i<=49;i++) counts[i]=0;
+    rows.forEach(r=>{
+      const parts=r.split(',').map(s=>s.trim());
+      const nums=parts.slice(1).map(x=>parseInt(x,10)).filter(n=>!isNaN(n));
+      nums.forEach(n=>{ if(n>=1 && n<=49) counts[n] = (counts[n]||0)+1 });
+    });
+    const labels = Object.keys(counts).map(Number);
+    const data = labels.map(l=>counts[l]);
+    // summary top5
+    const sorted = labels.map(l=>[l,counts[l]]).sort((a,b)=>b[1]-a[1]);
+    const top5 = sorted.slice(0,5).map(x=>`${x[0]} (${x[1]})`);
+    const cold5 = sorted.slice(-5).map(x=>`${x[0]} (${x[1]})`);
+    document.getElementById('summary').innerHTML = `<li>가장 자주 출현한 숫자(Top 5): ${top5.join(', ')}</li><li>가장 적게 출현한 숫자(Cold 5): ${cold5.join(', ')}</li>`;
+    const ctx = document.getElementById('freqChart').getContext('2d');
+    new Chart(ctx,{
+      type: 'bar',
+      data: { labels: labels.map(String), datasets:[{label:'출현 횟수', data: data, backgroundColor:'rgba(43,108,176,0.7)'}]},
+      options: { scales:{ y:{ beginAtZero:true, ticks:{stepSize:1} } } }
+    });
+  }catch(e){
+    document.getElementById('summary').innerText = '데이터를 불러오는 중 오류가 발생했습니다.';
+    console.error(e);
+  }
+}
+loadAndRender();
+</script>
+</body>
+</html>

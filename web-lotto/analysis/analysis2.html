@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>로또 전략: 미출현(Cold) 우대 전략 테스트</title>
+  <link rel="stylesheet" href="/web-lotto/styles.css">
+</head>
+<body>
+  <main class="container">
+    <h1>로또 전략: 미출현(Cold) 우대 전략 테스트</h1>
+    <div class="card">
+      <p>이 분석에서는 최근 N회 동안 출현하지 않은 숫자(Cold numbers)를 우대하여 추천을 생성했을 때의 특성과 주의점을 설명합니다.</p>
+      <h2>실험 설계</h2>
+      <p>최근 10회 데이터를 기반으로, 미출현 6개 숫자 중에서 일부를 우대하여 5세트의 추천번호를 생성하였습니다. 그 결과를 기존 빈도 기반 추천과 비교했습니다.</p>
+      <h2>주요 관찰</h2>
+      <ul>
+        <li>미출현 우대는 다양성을 증가시키며 동일 번호 편중을 줄여줌.</li>
+        <li>단기간(몇 회)에서는 성과 차이가 크지 않음 — 랜덤성 영향 큼.</li>
+        <li>권장: 미출현 가중치와 빈도 기반 가중치를 혼합(예: 60% 빈도, 40% 미출현)하는 하이브리드 전략이 실용적.</li>
+      </ul>
+      <h2>주의</h2>
+      <p>어떤 전략도 당첨을 보장하지 않으며, 다양한 전략을 병행해 보고 자신의 위험 성향에 맞게 조정하는 것을 권장합니다.</p>
+    </div>
+    <p><a href="/web-lotto/index.html">Back</a></p>
+  </main>
+</body>
+</html>
