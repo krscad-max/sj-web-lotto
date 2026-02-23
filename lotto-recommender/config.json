@@ -1,0 +1,18 @@
+{
+  "name": "로또알림",
+  "channel": "telegram",
+  "schedules": [
+    { "weekday": "Tue", "time": "08:00", "lotto": "Lotto Max", "count": 7 },
+    { "weekday": "Wed", "time": "08:00", "lotto": "Lotto 6/49", "count": 6 },
+    { "weekday": "Fri", "time": "08:00", "lotto": "Lotto Max", "count": 7 },
+    { "weekday": "Sat", "time": "08:00", "lotto": "Lotto 6/49", "count": 6 }
+  ],
+  "rules": {
+    "past_draws_fraction": 0.5,
+    "external_factors_fraction": 0.5,
+    "external_factors": ["date","weather","weekday","time","news_numbers"],
+    "exclude_bonus": true
+  },
+  "history_path": "/Users/sj/.openclaw/workspace/lotto-recommender/history.csv",
+  "enabled": false
+}
