@@ -22,7 +22,7 @@
       <p>빈도는 단순 통계입니다. 과거의 빈도는 미래를 보장하지 않으므로, 추천 전략으로는 빈도 기반 가중치와 무작위 요소를 혼합하는 것을 권장합니다. 예: 50%는 자주 출현한 숫자에서, 50%는 랜덤/미출현 숫자에서 선택.</p>
       <p>CSV 원본 및 더 많은 데이터는 메인 페이지의 '과거 데이터' 섹션을 참조하세요.</p>
     </div>
-    <p><a href="/web-lotto/index.html">Back</a></p>
+    <p><a href="/index.html">Back</a></p>
   </main>
   <script type="application/ld+json">
   {
@@ -37,7 +37,7 @@
 <script>
 async function loadAndRender(){
   try{
-    const res = await fetch('/web-lotto/data/lotto_649.csv');
+    const res = await fetch('/data/lotto_649.csv');
     const txt = await res.text();
     const rows = txt.trim().split('\n').map(r=>r.trim()).filter(Boolean);
     const counts = {};
