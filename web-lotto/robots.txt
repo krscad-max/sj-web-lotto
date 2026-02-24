@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://krscad.netlify.app/sitemap.xml
